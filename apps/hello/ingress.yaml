@@ -10,7 +10,7 @@ spec:
   tls:
     - hosts:
       - hello.k8s.squiggle.org
-      secretName: tls-secret
+      secretName: hello-tls-secret
   rules:
   - host: hello.k8s.squiggle.org
     http:
