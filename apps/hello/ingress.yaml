@@ -10,7 +10,7 @@ spec:
   - host: k8s.local
     http:
       paths:
-      - path: /
+      - path: /hello
         pathType: Prefix
         backend:
           service:
