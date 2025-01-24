@@ -1,13 +1,13 @@
 apiVersion: cert-manager.io/v1
-kind: Issuer
+kind: ClusterIssuer
 metadata:
-  name: letsencrypt
+  name: lets-encrypt
 spec:
   acme:
-    email: hostmaster@squiggle.org
     server: https://acme-v02.api.letsencrypt.org/directory
+    email: hostmaster@squiggle.org
     privateKeySecretRef:
-      name: letsencrypt-account-key
+      name: lets-encrypt-priviate-key
     solvers:
     - http01:
         ingress:
