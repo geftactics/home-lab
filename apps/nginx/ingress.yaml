@@ -5,9 +5,14 @@ metadata:
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "lets-encrypt"
 spec:
+  tls:
+    - hosts:
+      - nginx.k8s.squiggle.org
+      secretName: nginx-tls-secret
   rules:
-  - host: k8s.local
+  - host: nginx.k8s.squiggle.org
     http:
       paths:
       - path: /
