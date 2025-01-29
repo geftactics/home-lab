@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: authelia-config
+  namespace: default
+data:
+  users.yml: |
+    users:
+      admin:
+        displayname: "Admin User"
+        password: "$argon2id$v=19$m=65536,t=3,p=4$Hb5T1ukYhv/HUMaU06Y6wg$oA9l//J/FjqaLKCfm1CMeZNt2sXzoK87cGm1glpLVos"
+        email: admin@host
+        groups:
+          - admins
+      geoff:
+        displayname: "Geoff"
+        password: "$argon2id$v=19$m=65536,t=3,p=4$IqD3J10HVrMdE5oj3mrCSw$Xq1DRxcfK1FM3HYJXtMYKTOg7kuME7bjpGK8+15Dujs"
+        email: geoff@host
+        groups:
+          - users
+  configuration.yml: |
+    theme: auto
+    server:
+      host: 0.0.0.0
+      port: 9091
+    log:
+      level: info
+    authentication_backend:
+      password_reset:
+        disable: true
+      file:
+        path: /config/users.yml
+        search:
+          case_insensitive: true
+    access_control:
+      default_policy: 'one_factor'
+    session:
+      cookies:
+        - domain: "k8s.squiggle.org"
+          authelia_url: "https://auth.k8s.squiggle.org"
+          expiration: 10m
+          name: k8s_squiggle_org_session
+          same_site: lax
+    storage:
+      encryption_key: insecurekeyfixthislater
+      local:
+        path: "/db.sqlite3"
+    notifier:
+      filesystem:
+        filename: "/tmp/notification.txt"

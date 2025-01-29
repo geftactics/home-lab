@@ -1,0 +1,5 @@
+# Ignore all directories with "-ignore" suffix
+**/*-ignore/
+
+# Ignore a specifics
+apps/example

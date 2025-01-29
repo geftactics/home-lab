@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: authelia
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: "lets-encrypt"
+spec:
+  tls:
+    - hosts:
+      - auth.k8s.squiggle.org
+      secretName: auth-tls-secret
+  rules:
+    - host: auth.k8s.squiggle.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: authelia
+                port:
+                  number: 80
