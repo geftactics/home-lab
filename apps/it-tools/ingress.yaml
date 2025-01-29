@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hello-ingress
+  name: it-tools-ingress
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
@@ -9,16 +9,16 @@ metadata:
 spec:
   tls:
     - hosts:
-      - hello.k8s.squiggle.org
-      secretName: hello-tls-secret
+      - it-tools.k8s.squiggle.org
+      secretName: it-tools-tls-secret
   rules:
-  - host: hello.k8s.squiggle.org
+  - host: it-tools.k8s.squiggle.org
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: hello
+            name: it-tools
             port:
               number: 80

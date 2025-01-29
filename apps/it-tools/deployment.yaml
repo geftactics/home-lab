@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello
+  name: it-tools
   namespace: default
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: hello
+      app: it-tools
   template:
     metadata:
       labels:
-        app: hello
+        app: it-tools
     spec:
       containers:
-      - name: hello
-        image: nginxdemos/hello:0.4
+      - name: it-tools
+        image: corentinth/it-tools:latest
         ports:
         - containerPort: 80
