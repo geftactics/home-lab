@@ -38,7 +38,7 @@ data:
       cookies:
         - domain: "k8s.squiggle.org"
           authelia_url: "https://auth.k8s.squiggle.org"
-          expiration: 10m
+          expiration: 18h
           name: k8s_squiggle_org_session
           same_site: lax
     storage:
