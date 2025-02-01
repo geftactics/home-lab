@@ -33,7 +33,7 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: prowlarr-config
+            claimName: prowlarr-pvc
         - name: media
           persistentVolumeClaim:
             claimName: media-shared

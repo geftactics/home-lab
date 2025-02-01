@@ -33,7 +33,7 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: radarr-config
+            claimName: radarr-pvc
         - name: media
           persistentVolumeClaim:
             claimName: media-shared

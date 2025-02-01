@@ -1,26 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: qbittorrent
+  name: sonarr
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: qbittorrent
+      app: sonarr
   template:
     metadata:
       labels:
-        app: qbittorrent
+        app: sonarr
     spec:
       containers:
-      - name: qbittorrent
-        image: lscr.io/linuxserver/qbittorrent:5.0.3
+      - name: sonarr
+        image: lscr.io/linuxserver/sonarr:4.0.12
         ports:
-          - containerPort: 8080
-          - containerPort: 6881
-          - containerPort: 6881
-            protocol: UDP
+          - containerPort: 8989
         env:
           - name: PUID
             value: "1000"
@@ -28,17 +25,15 @@ spec:
             value: "1000"
           - name: TZ
             value: "Europe/London"
-          - name: WEBUI_PORT
-            value: "8080"
         volumeMounts:
           - name: config
             mountPath: /config
-          - name: downloads
+          - name: media
             mountPath: /media
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: qbittorrent-pvc
-        - name: downloads
+            claimName: sonarr-config
+        - name: media
           persistentVolumeClaim:
             claimName: media-shared
