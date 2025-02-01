@@ -1,9 +1,45 @@
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: adguard-work-pv
+  namespace: default
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: microk8s-hostpath
+  hostPath:
+    path: "/mnt/adguard-work-pv"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: adguard-conf-pv
+  namespace: default
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: microk8s-hostpath
+  hostPath:
+    path: "/mnt/adguard-conf-pv"
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: adguard-config
+  name: adguard-work-pvc
   namespace: default
 spec:
+  storageClassName: microk8s-hostpath
+  volumeName: adguard-work-pv
   accessModes:
     - ReadWriteOnce
   resources:
@@ -13,9 +49,11 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: adguard-work
+  name: adguard-conf-pvc
   namespace: default
 spec:
+  storageClassName: microk8s-hostpath
+  volumeName: adguard-conf-pv
   accessModes:
     - ReadWriteOnce
   resources:
