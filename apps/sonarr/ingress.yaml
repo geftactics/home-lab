@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sonarr-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/auth-method: 'GET'
+    nginx.ingress.kubernetes.io/auth-url: "http://authelia.default.svc.cluster.local/api/authz/auth-request"
+    nginx.ingress.kubernetes.io/auth-signin: "https://auth.k8s.squiggle.org/?rm=$request_method"
+    nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "lets-encrypt"
+spec:
+  tls:
+    - hosts:
+      - sonarr.k8s.squiggle.org
+      secretName: sonarr-tls-secret
+  rules:
+    - host: sonarr.k8s.squiggle.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sonarr
+                port:
+                  number: 443
