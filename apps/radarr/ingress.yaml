@@ -13,7 +13,7 @@ metadata:
 spec:
   tls:
     - hosts:
-      - it-tools.k8s.squiggle.org
+      - radarr.k8s.squiggle.org
       secretName: radarr-tls-secret
   rules:
     - host: radarr.k8s.squiggle.org
