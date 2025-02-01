@@ -6,18 +6,13 @@ metadata:
 data:
   users.yml: |
     users:
-      admin:
-        displayname: "Admin User"
-        password: "$argon2id$v=19$m=65536,t=3,p=4$Hb5T1ukYhv/HUMaU06Y6wg$oA9l//J/FjqaLKCfm1CMeZNt2sXzoK87cGm1glpLVos"
-        email: admin@host
-        groups:
-          - admins
       geoff:
         displayname: "Geoff"
-        password: "$argon2id$v=19$m=65536,t=3,p=4$IqD3J10HVrMdE5oj3mrCSw$Xq1DRxcfK1FM3HYJXtMYKTOg7kuME7bjpGK8+15Dujs"
+        password: "$argon2id$v=19$m=65536,t=3,p=4$hauzs6SlcEt3B5ubkXYxHg$7s7q9fJc7BRggvmcTJAnV8U7ZjDiFgswuOEVBqfihMs"
         email: geoff@host
         groups:
           - users
+          - admins
   configuration.yml: |
     theme: auto
     server:
