@@ -36,4 +36,4 @@ spec:
             claimName: radarr-pvc
         - name: media
           persistentVolumeClaim:
-            claimName: media-shared
+            claimName: media-shared-pvc

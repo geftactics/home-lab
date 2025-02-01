@@ -36,4 +36,4 @@ spec:
             claimName: prowlarr-pvc
         - name: media
           persistentVolumeClaim:
-            claimName: media-shared
+            claimName: media-shared-pvc

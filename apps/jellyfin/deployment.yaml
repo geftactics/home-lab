@@ -51,7 +51,7 @@ spec:
             claimName: jellyfin-pvc
         - name: media
           persistentVolumeClaim:
-            claimName: media-shared
+            claimName: media-shared-pvc
         - name: dri
           hostPath:
             path: /dev/dri

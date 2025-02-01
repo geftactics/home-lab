@@ -41,4 +41,4 @@ spec:
             claimName: qbittorrent-pvc
         - name: downloads
           persistentVolumeClaim:
-            claimName: media-shared
+            claimName: media-shared-pvc
