@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - configmap.yaml
+  - deployment.yaml
+  - ingress.yaml
+  - sealed-secret.yaml
+  - services.yaml
+
+configMapGenerator:
+  - name: authelia-config
+    namespace: default
+    files:
+      - config.yml
+    options:
+      annotations:
+        "config.kubernetes.io/depends-on": "ConfigMap/authelia-config"
