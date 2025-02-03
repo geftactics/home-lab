@@ -12,7 +12,7 @@ configMapGenerator:
   - name: authelia-config
     namespace: default
     files:
-      - config.yml
+      - configmap.yml
     options:
       annotations:
         "config.kubernetes.io/depends-on": "ConfigMap/authelia-config"
