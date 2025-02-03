@@ -29,6 +29,14 @@ data:
           case_insensitive: true
     access_control:
       default_policy: 'one_factor'
+      rules:
+        - domain:
+          - prowlarr.k8s.squiggle.org
+          - radarr.k8s.squiggle.org
+          - sonarr.k8s.squiggle.org
+          resources:
+            - '^/api([/?].*)?$'
+          policy: bypass
     session:
       cookies:
         - domain: "k8s.squiggle.org"
