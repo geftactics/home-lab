@@ -6,7 +6,7 @@ resources:
   - deployment.yaml
   - ingress.yaml
   - sealed-secret.yaml
-  - services.yaml
+  - service.yaml
 
 configMapGenerator:
   - name: authelia-config
