@@ -25,6 +25,7 @@ spec:
           env:
             - name: AUTHELIA_SESSION_SECRET_FILE
               value: /secrets/SESSION_SECRET
+      enableServiceLinks: false
       volumes:
         - name: config
           configMap:
