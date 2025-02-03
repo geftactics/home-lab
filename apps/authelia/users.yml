@@ -1,0 +1,8 @@
+users:
+  geoff:
+    displayname: "Geoff"
+    password: "$argon2id$v=19$m=65536,t=3,p=4$hauzs6SlcEt3B5ubkXYxHg$7s7q9fJc7BRggvmcTJAnV8U7ZjDiFgswuOEVBqfihMs"
+    email: geoff@host
+    groups:
+      - users
+      - admins
