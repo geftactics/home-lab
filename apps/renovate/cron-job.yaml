@@ -12,7 +12,7 @@ spec:
         spec:
           containers:
             - name: renovate
-              image: renovate/renovate:39.156.2
+              image: renovate/renovate:39.176.4
               args:
                 - geftactics/home-lab
               env:
