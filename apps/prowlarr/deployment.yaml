@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: prowlarr
-        image: lscr.io/linuxserver/prowlarr:1.29.2
+        image: lscr.io/linuxserver/prowlarr:1.32.2
         ports:
           - containerPort: 9696
         env:
