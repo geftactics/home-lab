@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: authelia
-          image: ghcr.io/authelia/authelia:4.39.10
+          image: ghcr.io/authelia/authelia:4.39.13
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: config
