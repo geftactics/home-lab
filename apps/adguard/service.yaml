@@ -4,7 +4,7 @@ metadata:
   name: adguard
   namespace: default
   annotations:
-      metallb.universe.tf/allow-shared-ip: "adguard"
+    metallb.universe.tf/allow-shared-ip: "adguard"
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local

@@ -8,7 +8,7 @@ metadata:
 spec:
   tls:
     - hosts:
-      - auth.k8s.squiggle.org
+        - auth.k8s.squiggle.org
       secretName: auth-tls-secret
   rules:
     - host: auth.k8s.squiggle.org

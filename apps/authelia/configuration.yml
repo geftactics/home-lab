@@ -14,9 +14,9 @@ access_control:
   default_policy: 'one_factor'
   rules:
     - domain:
-      - prowlarr.k8s.squiggle.org
-      - radarr.k8s.squiggle.org
-      - sonarr.k8s.squiggle.org
+        - prowlarr.k8s.squiggle.org
+        - radarr.k8s.squiggle.org
+        - sonarr.k8s.squiggle.org
       resources:
         - '^/api([/?].*)?$'
       policy: bypass

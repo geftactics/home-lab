@@ -13,7 +13,7 @@ metadata:
 spec:
   tls:
     - hosts:
-      - sonarr.k8s.squiggle.org
+        - sonarr.k8s.squiggle.org
       secretName: sonarr-tls-secret
   rules:
     - host: sonarr.k8s.squiggle.org

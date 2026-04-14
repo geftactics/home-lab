@@ -9,7 +9,7 @@ metadata:
 spec:
   tls:
     - hosts:
-      - jellyfin.k8s.squiggle.org
+        - jellyfin.k8s.squiggle.org
       secretName: jellyfin-tls-secret
   rules:
     - host: jellyfin.k8s.squiggle.org

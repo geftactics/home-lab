@@ -13,16 +13,16 @@ metadata:
 spec:
   tls:
     - hosts:
-      - it-tools.k8s.squiggle.org
+        - it-tools.k8s.squiggle.org
       secretName: it-tools-tls-secret
   rules:
-  - host: it-tools.k8s.squiggle.org
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: it-tools
-            port:
-              number: 80
+    - host: it-tools.k8s.squiggle.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: it-tools
+                port:
+                  number: 80

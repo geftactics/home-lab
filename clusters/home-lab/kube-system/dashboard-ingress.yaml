@@ -11,16 +11,16 @@ metadata:
 spec:
   tls:
     - hosts:
-      - dashboard.k8s.squiggle.org
+        - dashboard.k8s.squiggle.org
       secretName: dashboard-tls-secret
   rules:
-  - host: dashboard.k8s.squiggle.org
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: kubernetes-dashboard
-            port:
-              number: 443
+    - host: dashboard.k8s.squiggle.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kubernetes-dashboard
+                port:
+                  number: 443

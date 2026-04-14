@@ -14,22 +14,22 @@ spec:
         app: radarr
     spec:
       containers:
-      - name: radarr
-        image: lscr.io/linuxserver/radarr:6.1.1
-        ports:
-          - containerPort: 7878
-        env:
-          - name: PUID
-            value: "1000"
-          - name: PGID
-            value: "1000"
-          - name: TZ
-            value: "Europe/London"
-        volumeMounts:
-          - name: config
-            mountPath: /config
-          - name: media
-            mountPath: /media
+        - name: radarr
+          image: lscr.io/linuxserver/radarr:6.1.1
+          ports:
+            - containerPort: 7878
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Europe/London"
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: media
+              mountPath: /media
       volumes:
         - name: config
           persistentVolumeClaim:
