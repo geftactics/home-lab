@@ -5,6 +5,7 @@
     "fileMatch": ["\\.yaml$"]
   },
   "platformAutomerge": true,
+  "ignoreTests": true,
   "packageRules": [
     {
       "matchDatasources": ["docker"],
