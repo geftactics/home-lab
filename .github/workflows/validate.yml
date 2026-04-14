@@ -1,0 +1,46 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install yamllint
+        run: pip install yamllint
+
+      - name: Install kubeconform
+        run: |
+          curl -fsSL -o kubeconform.tar.gz https://github.com/yannh/kubeconform/releases/download/v0.7.0/kubeconform-linux-amd64.tar.gz
+          tar -xzf kubeconform.tar.gz kubeconform
+          sudo mv kubeconform /usr/local/bin/kubeconform
+
+      - name: Lint YAML files
+        run: yamllint -d "{extends: relaxed, rules: {line-length: disable}}" .
+
+      - name: Validate Kubernetes manifests
+        run: |
+          mapfile -t manifests < <(find apps clusters -type f \( -name '*.yaml' -o -name '*.yml' \) -print0 | xargs -0 grep -l '^apiVersion:')
+
+          if [ "${#manifests[@]}" -eq 0 ]; then
+            echo "No Kubernetes manifests found"
+            exit 0
+          fi
+
+          kubeconform -strict -summary -ignore-missing-schemas "${manifests[@]}"
