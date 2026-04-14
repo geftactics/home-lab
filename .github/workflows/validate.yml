@@ -32,7 +32,8 @@ jobs:
           sudo mv kubeconform /usr/local/bin/kubeconform
 
       - name: Lint YAML files
-        run: yamllint -d "{extends: relaxed, rules: {line-length: disable}}" .
+        run: |
+          yamllint -d "{extends: relaxed, rules: {line-length: disable}}" .
 
       - name: Validate Kubernetes manifests
         run: |
