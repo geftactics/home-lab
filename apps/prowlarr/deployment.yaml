@@ -31,9 +31,9 @@ spec:
             - name: media
               mountPath: /media
       volumes:
-      - name: config
-        persistentVolumeClaim:
-          claimName: prowlarr-pvc
-      - name: media
-        persistentVolumeClaim:
-          claimName: media-shared-pvc
+        - name: config
+          persistentVolumeClaim:
+            claimName: prowlarr-pvc
+        - name: media
+          persistentVolumeClaim:
+            claimName: media-shared-pvc
