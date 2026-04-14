@@ -14,26 +14,26 @@ spec:
         app: prowlarr
     spec:
       containers:
-      - name: prowlarr
-        image: lscr.io/linuxserver/prowlarr:2.3.5
-        ports:
-          - containerPort: 9696
-        env:
-          - name: PUID
-            value: "1000"
-          - name: PGID
-            value: "1000"
-          - name: TZ
-            value: "Europe/London"
-        volumeMounts:
-          - name: config
-            mountPath: /config
-          - name: media
-            mountPath: /media
+        - name: prowlarr
+          image: lscr.io/linuxserver/prowlarr:2.3.5
+          ports:
+            - containerPort: 9696
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Europe/London"
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: media
+              mountPath: /media
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: prowlarr-pvc
-        - name: media
-          persistentVolumeClaim:
-            claimName: media-shared-pvc
+      - name: config
+        persistentVolumeClaim:
+          claimName: prowlarr-pvc
+      - name: media
+        persistentVolumeClaim:
+          claimName: media-shared-pvc
