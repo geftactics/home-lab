@@ -13,7 +13,7 @@ metadata:
 spec:
   tls:
     - hosts:
-      - prowlarr.k8s.squiggle.org
+        - prowlarr.k8s.squiggle.org
       secretName: prowlarr-tls-secret
   rules:
     - host: prowlarr.k8s.squiggle.org
