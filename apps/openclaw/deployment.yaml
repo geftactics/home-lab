@@ -22,39 +22,6 @@ spec:
         fsGroup: 1000
         seccompProfile:
           type: RuntimeDefault
-      initContainers:
-        - name: init-config
-          image: busybox:1.37
-          imagePullPolicy: IfNotPresent
-          command:
-            - sh
-            - -c
-            - |
-              mkdir -p /home/node/.openclaw/workspace
-              chown -R 1000:1000 /home/node/.openclaw
-              if [ ! -f /home/node/.openclaw/openclaw.json ]; then
-                token="$(head -c 32 /dev/urandom | base64)"
-                sed "s|__OPENCLAW_GATEWAY_TOKEN__|${token}|" /config/openclaw.template.json > /home/node/.openclaw/openclaw.json
-              fi
-              if [ ! -f /home/node/.openclaw/workspace/AGENTS.md ]; then
-                cp /config/AGENTS.md /home/node/.openclaw/workspace/AGENTS.md
-              fi
-              chown -R 1000:1000 /home/node/.openclaw
-          securityContext:
-            runAsUser: 0
-            runAsGroup: 0
-          resources:
-            requests:
-              memory: 32Mi
-              cpu: 50m
-            limits:
-              memory: 64Mi
-              cpu: 100m
-          volumeMounts:
-            - name: openclaw-home
-              mountPath: /home/node/.openclaw
-            - name: config
-              mountPath: /config
       containers:
         - name: gateway
           image: ghcr.io/openclaw/openclaw:2026.4.2
@@ -98,8 +65,8 @@ spec:
               command:
                 - node
                 - -e
-                - "require('http').get('http://127.0.0.1:18789/readyz', r => process.exit(r.statusCode < 400 ? 0 : 1)).on('error', () => process.exit(1))"
-            initialDelaySeconds: 15
+                - "require('http').get('http://127.0.0.1:18789/healthz', r => process.exit(r.statusCode < 400 ? 0 : 1)).on('error', () => process.exit(1))"
+            initialDelaySeconds: 30
             periodSeconds: 10
             timeoutSeconds: 5
           volumeMounts:
@@ -120,8 +87,5 @@ spec:
         - name: openclaw-home
           persistentVolumeClaim:
             claimName: openclaw-home-pvc
-        - name: config
-          configMap:
-            name: openclaw-config
         - name: tmp-volume
           emptyDir: {}
