@@ -31,6 +31,7 @@ spec:
             - -c
             - |
               mkdir -p /home/node/.openclaw/workspace
+              chown -R 1000:1000 /home/node/.openclaw
               if [ ! -f /home/node/.openclaw/openclaw.json ]; then
                 token="$(head -c 32 /dev/urandom | base64)"
                 sed "s|__OPENCLAW_GATEWAY_TOKEN__|${token}|" /config/openclaw.template.json > /home/node/.openclaw/openclaw.json
@@ -38,9 +39,10 @@ spec:
               if [ ! -f /home/node/.openclaw/workspace/AGENTS.md ]; then
                 cp /config/AGENTS.md /home/node/.openclaw/workspace/AGENTS.md
               fi
+              chown -R 1000:1000 /home/node/.openclaw
           securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
+            runAsUser: 0
+            runAsGroup: 0
           resources:
             requests:
               memory: 32Mi
