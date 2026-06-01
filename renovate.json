@@ -4,6 +4,7 @@
   "kubernetes": {
     "fileMatch": ["\\.yaml$"]
   },
+  "prHourlyLimit": 0,
   "platformAutomerge": true,
   "ignoreTests": true,
   "packageRules": [
